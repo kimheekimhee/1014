@@ -2,19 +2,32 @@
 {% load django_bootstrap5 %}
 
 {% block content %}
-  <h1 class="mb-3">리뷰목록</h1>
-  {% for review in reviews %}
-    <p>제목:
-      {{ review.title }}</p>
-    <p>영화제목:
-      {{ review.movie_name }}</p>
-    <p>평점:
-      {{ review.grade }}</p>
-    <p>생성날짜:
-      {{ review.created_at.month }}{{ review.created_at.day }}</p>
-    <p>수정날짜:
-      {{ review.updated_at.month }}{{ review.updated_at.day }}</p>
-    <hr>
-    <a href="{% url 'reviews:detail' review.pk %}">자세히</a>
-  {% endfor %}
-{% endblock content %}
+
+
+<h2 class="m-3">리뷰목록</h2>
+<div class="container">
+  <table class="table my-5">
+    <thead class="text-white">
+      <tr class="opacity-75 bg-dark">
+        <th scope="col">리뷰 제목</th>
+        <th scope="col">영화 제목</th>
+        <th scope="col">별점</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for review in reviews %}
+      <tr>
+        <th scope="row"><a href="{% url 'reviews:detail' review.pk %}" class="text-decoration-none">
+            {{ review.title }}</a>
+        </th>
+        <td>{{ review.movie_name }}</td>
+        <td>{{ review.grade }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+
+
+  {% endblock content %}
