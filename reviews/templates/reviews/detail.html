@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <p>제목:
+    {{ review.title }}</p>
+  <p>내용:
+    {{ review.content }}</p>
+  <p>영화제목:
+    {{ review.movie_name }}</p>
+  <p>평점:
+    {{ review.grade }}</p>
+  <p>생성날짜:
+    {{ review.created_at.month }}{{ review.created_at.day }}</p>
+  <p>수정날짜:
+    {{ review.updated_at.month }}{{ review.updated_at.day }}</p>
+
+  <a href="{% url 'reviews:update' review.pk %}">수정하기</a>
+  <a href="{% url 'reviews:delete' review.pk %}">삭제하기</a>
+{% endblock %}
