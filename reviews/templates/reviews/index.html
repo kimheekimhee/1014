@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+  <h1 class="mb-3">리뷰목록</h1>
+  {% for review in reviews %}
+    <p>제목: {{ review.title }}</p>
+    <p>내용: {{ review.content }}</p>
+    <p>영화제목: {{ review.movie_name }}</p>
+    <p>평점: {{ review.grade }}</p>
+    <p>생성날짜: {{ review.created_at.month }}{{ review.created_at.day }}</p>
+    <p>수정날짜: {{ review.updated_at.month }}{{ review.updated_at.day }}</p>
+    <hr>
+  {% endfor %}
+{% endblock content %}
