@@ -19,39 +19,48 @@
     </style>
     <title>Document</title>
   </head>
-
-  
     <nav class="navbar bg-light">
-      
-        {% if user.is_authenticated %}
-        <ul class="nav-item">
-          <a class="nav-link" href="{% url 'accounts:logout' %}">로그아웃</a>
-        </ul>
-        <ul class="nav-item">
-          <a class="nav-link" href="{% url 'accounts:update' user.pk %}">회원정보수정</a>
-        </ul>
-        <span class="text-light"><a class="text-light" href="{% url 'accounts:detail' user.pk %}">
-          {{ user.username }}</a>님, 환영합니다!
-        {% else %}
+      <div>
+      {% if user.is_authenticated %}
+      <div class="d-flex">
+      <ul class="nav-item">
+        <a class="nav-link" href="{% url 'accounts:logout' %}">로그아웃</a>
+      </ul>
+      <ul class="nav-item">
+        <a class="nav-link" href="{% url 'accounts:update' user.pk %}">회원정보수정</a>
+      </ul>
+      <a href="{% url 'accounts:detail' user.pk %}">
+        {{ user.username }}</a>님, 환영합니다!
+      </div>
+
+      {% else %}
+      <div class="d-flex">
         <ul class="nav-item">
           <a class="nav-link" href="{% url 'accounts:signup' %}">회원가입</a>
         </ul>
         <ul class="nav-item">
           <a class="nav-link" href="{% url 'accounts:login' %}">로그인</a>
         </ul>
-          <a class="navbar-brand fw-bold" href="#">비회원</a> <span>님 안녕하세요</span>
-        {% endif %}
-        
-      
+        <a class="navbar-brand fw-bold" href="#">비회원</a> <span>님 안녕하세요</span>
+      </div>
+      {% endif %}
+      </div>
+      <div class="buttons">
+        <a href="{% url 'reviews:index' %}">
+          <button type="button" class="btn btn-primary">리뷰 목록 보기</button>
+        </a>
+        <a href="{% url 'reviews:create' %}">
+          <button type="button" class="btn btn-primary">리뷰 쓰러 가기</button>
+        </a>
+      </div>
     </nav>
-    <div class="container mb-5">
-      
-    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
     <body>
-      {% block content %}{% endblock content %}
-  </body>
-
+      <div class="container mb-5">
+        {% block content %}{% endblock content %}
+      </div>
+    </body>
+    
 </html>

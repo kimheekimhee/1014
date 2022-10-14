@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+  <h1 class="text-center">글 생성하기</h1>
+  <form action="" method="POST" class="my-3">
+    {% csrf_token %}
+    {% bootstrap_form review %}
+    {% bootstrap_button button_type="submit" button_class="btn-primary" content="OK" %}
+  </form>
+{% endblock content %}

@@ -2,6 +2,9 @@
 {% load django_bootstrap5 %}
 
 {% block content %}
+<a href="{% url 'accounts:index' %}">
+  <button type="button" class="btn btn-primary">home</button>
+</a>
   <h1>{{ user }}님의 프로필</h1>
     {{ user.username }}
     {{ user.first_name }}
