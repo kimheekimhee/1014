@@ -2,12 +2,12 @@
 {% load django_bootstrap5 %}
 
 {% block content %}
-  <h1>회원목록</h1>
-  {% for user in users %}
-    {{ user.username }}
-    <a href="{% url 'accounts:detail' user.pk %}">
-      <button type="button" class="btn btn-primary">상세정보 페이지</button>
-    </a>
-    <hr>
-  {% endfor %}
+<h2 class="m-3">회원목록</h2>
+{% for user in users %}
+
+<a href="{% url 'accounts:detail' user.pk %}" class="text-decoration-none">{{ user.username }}
+
+</a>
+<hr>
+{% endfor %}
 {% endblock content %}

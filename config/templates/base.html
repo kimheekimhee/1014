@@ -1,66 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin"/>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet"/>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
-    <style>
-      * {
-        font-family: "Noto Sans KR", sans-serif;
-      }
-    </style>
-    <title>Document</title>
-  </head>
-    <nav class="navbar bg-light">
-      <div>
-      {% if user.is_authenticated %}
-      <div class="d-flex">
-      <ul class="nav-item">
-        <a class="nav-link" href="{% url 'accounts:logout' %}">로그아웃</a>
-      </ul>
-      <ul class="nav-item">
-        <a class="nav-link" href="{% url 'accounts:update' user.pk %}">회원정보수정</a>
-      </ul>
-      <a href="{% url 'accounts:detail' user.pk %}">
-        {{ user.username }}</a>님, 환영합니다!
-      </div>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
+    integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
+    crossorigin="anonymous"></script>
+  <style>
+    * {
+      font-family: "Noto Sans KR", sans-serif;
+    }
+  </style>
+  <title>Document</title>
+</head>
+<nav class="navbar bg-light me-2 ms-2">
+  <div>
+    {% if user.is_authenticated %}
 
-      {% else %}
-      <div class="d-flex">
-        <ul class="nav-item">
-          <a class="nav-link" href="{% url 'accounts:signup' %}">회원가입</a>
-        </ul>
-        <ul class="nav-item">
-          <a class="nav-link" href="{% url 'accounts:login' %}">로그인</a>
-        </ul>
-        <a class="navbar-brand fw-bold" href="#">비회원</a> <span>님 안녕하세요</span>
-      </div>
-      {% endif %}
-      </div>
-      <div class="buttons">
-        <a href="{% url 'reviews:index' %}">
-          <button type="button" class="btn btn-primary">리뷰 목록 보기</button>
-        </a>
-        <a href="{% url 'reviews:create' %}">
-          <button type="button" class="btn btn-primary">리뷰 쓰러 가기</button>
-        </a>
-      </div>
-    </nav>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
-    <body>
-      <div class="container mb-5">
-        {% block content %}{% endblock content %}
-      </div>
-    </body>
-    
+    <div class="d-flex me-2 ">
+      <a class="navbar-brand fw-bold" href="{% url 'accounts:detail' user.pk %}">{{ user.username }}</a> <span
+        class="navbar-brand fw-bold">님, 환영합니다!</span>
+      <a class="navbar-brand fw-bold" href="{% url 'accounts:logout' %}">로그아웃</a>
+      <a class="navbar-brand fw-bold" href="{% url 'accounts:update' user.pk %}">회원정보수정</a>
+
+    </div>
+
+    {% else %}
+    <div class="d-flex me-2 ">
+      <a class="navbar-brand fw-bold" href="#">비회원</a> <span class="navbar-brand fw-bold">님 안녕하세요</span>
+      <a class="navbar-brand fw-bold" href="{% url 'accounts:signup' %}">회원가입</a>
+
+      <a class="navbar-brand fw-bold" href="{% url 'accounts:login' %}">로그인</a>
+
+
+    </div>
+    {% endif %}
+  </div>
+  <div class="d-flex me-2 ">
+    <a class="navbar-brand fw-bold" href="{% url 'reviews:index' %}">리뷰목록</a>
+    <a class="navbar-brand fw-bold" href="{% url 'reviews:create' %}">리뷰쓰기</a>
+  </div>
+</nav>
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+  integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+  integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
+
+<body>
+  <div class="container mb-5">
+    {% block content %}{% endblock content %}
+  </div>
+  <footer>
+    <div class="postion-fixed fixed-bottom p-4 bg-dark text-center text-white fw-light">Copyright 2022. by
+      sony-jun, kmk4162,
+      kimheekimhee All rights reserved</div>
+  </footer>
+</body>
+
+
 </html>
